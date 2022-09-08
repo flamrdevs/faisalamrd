@@ -1,4 +1,4 @@
 {
-  "cleanUrls": false,
-  "redirects": [{ "source": "/(.*)", "destination": "/" }]
+  "cleanUrls": true,
+  "redirects": [{ "source": "/bee", "destination": "/" }]
 }
