@@ -1,0 +1,17 @@
+---
+import PageLayout from "~/components/layouts/PageLayout.astro";
+
+import photos from "~/data/photos";
+---
+
+<PageLayout>
+  <div class="grid grid-cols-3 gap-0.5 md:gap-1 xl:gap-2">
+    {
+      photos.map((photo) => (
+        <div>
+          <img class="w-full h-full aspect-square object-cover" src={photo.src} alt={photo.id} />
+        </div>
+      ))
+    }
+  </div>
+</PageLayout>
