@@ -7,9 +7,9 @@ import photos from "~/data/photos";
 <PageLayout>
   <style>
     .photo {
-      transform: translateX(var(--motion-translateX));
+      transform: translateY(var(--motion-translateY));
       opacity: 0;
-      --motion-translateX: -24px;
+      --motion-translateY: 24px;
     }
   </style>
 
@@ -41,7 +41,7 @@ import photos from "~/data/photos";
       photos,
       {
         opacity: 1,
-        x: [-24, 0],
+        y: [24, 0],
       },
       {
         easing: spring(),
