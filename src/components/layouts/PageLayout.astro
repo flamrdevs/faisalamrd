@@ -3,86 +3,26 @@ export interface Props {
   title?: string;
 }
 
-const { title = "faisalamrd" } = Astro.props;
+const { title } = Astro.props;
 
-import "~/assets/css/index.css";
+import HTML from "~/components/layouts/HTML.astro";
 
 import ThemeTogglerButton from "~/components/core/ThemeTogglerButton";
-import PhotoModal from "../core/PhotoModal";
+import PhotoModal from "~/components/core/PhotoModal";
 ---
 
-<!DOCTYPE html>
-<html id="html" lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="title" content={title} />
-    <meta name="description" content={title} />
+<HTML title={title}>
+  <header class="w-full max-w-screen-xl mx-auto z-0">
+    <div class="flex items-center gap-2 md:gap-3 xl:gap-4 p-2 md:p-3 xl:p-4">
+      <ThemeTogglerButton client:load />
 
-    <script is:inline>
-      const DARK_THEME_KEY = "dark-theme";
+      <h1 class="text-xl md:text-2xl lg:text-3xl font-bold leading-none text-neutral-700 dark:text-neutral-200">faisalamrd</h1>
+    </div>
+  </header>
 
-      window.getStorageDarkTheme = function (defaultValue) {
-        const item = localStorage.getItem(DARK_THEME_KEY);
-        if (typeof item === "string") {
-          try {
-            return JSON.parse(item);
-          } catch (error) {
-            console.error(error);
-            return defaultValue;
-          }
-        } else {
-          return defaultValue;
-        }
-      };
+  <main class="w-full max-w-screen-xl mx-auto z-10">
+    <slot />
+  </main>
 
-      window.setStorageDarkTheme = function (value) {
-        try {
-          localStorage.setItem(DARK_THEME_KEY, JSON.stringify(value));
-        } catch (error) {
-          console.error(error);
-        }
-        return value;
-      };
-
-      window.getInitialDarkTheme = function () {
-        return typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches;
-      };
-
-      window.setDocumentDarkTheme = function (dark) {
-        document.getElementById("html").classList[dark ? "add" : "remove"]("dark");
-      };
-    </script>
-
-    <script is:inline>
-      window.setDocumentDarkTheme(window.getStorageDarkTheme(window.getInitialDarkTheme()));
-    </script>
-
-    <style>
-      body::-webkit-scrollbar {
-        display: none;
-      }
-
-      body {
-        -ms-overflow-style: none; /* IE and Edge */
-        scrollbar-width: none; /* Firefox */
-      }
-    </style>
-  </head>
-  <body class="relative">
-    <header class="w-full max-w-screen-xl mx-auto z-0">
-      <div class="flex items-center gap-2 md:gap-3 xl:gap-4 p-2 md:p-3 xl:p-4">
-        <ThemeTogglerButton client:load />
-
-        <h1 class="text-xl md:text-2xl lg:text-3xl font-bold leading-none text-neutral-700 dark:text-neutral-200">faisalamrd</h1>
-      </div>
-    </header>
-
-    <main class="w-full max-w-screen-xl mx-auto z-10">
-      <slot />
-    </main>
-
-    <PhotoModal client:load />
-  </body>
-</html>
+  <PhotoModal client:load />
+</HTML>

@@ -35,7 +35,7 @@ const PhotoModal: Component = () => {
             initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.6 }}
-            class="relative overflow-hidden rounded md:rounded-lg xl:rounded-2xl"
+            class="relative overflow-hidden rounded md:rounded-lg xl:rounded-2xl shadow-lg"
             onClick={handlePreventDefaultStopPropagation}
           >
             <img
