@@ -1,17 +1,38 @@
 ---
-import PageLayout from "~/components/layouts/PageLayout.astro";
-
-import photos from "~/data/photos";
+import SimplePageLayout from "~/components/layouts/SimplePageLayout.astro";
 ---
 
-<PageLayout>
-  <div class="grid grid-cols-3 gap-0.5 md:gap-1 xl:gap-2">
-    {
-      photos.map((photo) => (
-        <div>
-          <img class="w-full h-full aspect-square object-cover" src={photo.src} alt={photo.id} />
-        </div>
-      ))
+<SimplePageLayout>
+  <style>
+    #bee {
+      transform: translateY(var(--motion-translateY));
+      opacity: 0;
+      --motion-translateY: 32px;
     }
+  </style>
+
+  <div class="flex justify-center items-center min-h-[50vh]">
+    <div id="bee" class="relative">
+      <a href="/bee" class="relative font-bold text-xl text-neutral-700 dark:text-neutral-200 leading-none">bee</a>
+
+      <div class="absolute inset-x-0 -bottom-1 bg-neutral-700 dark:bg-neutral-200 h-1 w-full rounded-full"></div>
+    </div>
   </div>
-</PageLayout>
+
+  <script>
+    import { animate, spring } from "motion";
+
+    const bee = document.querySelector("#bee");
+
+    animate(
+      bee,
+      {
+        opacity: 1,
+        y: [32, 0],
+      },
+      {
+        easing: spring(),
+      }
+    );
+  </script>
+</SimplePageLayout>

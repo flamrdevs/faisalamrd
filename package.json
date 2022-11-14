@@ -15,11 +15,13 @@
   "dependencies": {
     "@astrojs/solid-js": "^1.1.0",
     "@astrojs/tailwind": "^1.0.0",
+    "@motionone/solid": "^10.14.3",
     "@nanostores/persistent": "^0.6.2",
     "@nanostores/solid": "^0.2.0",
     "astro": "^1.1.7",
     "dayjs": "^1.11.5",
     "javascript-yesterday": "^1.0.1-alpha.6",
+    "motion": "^10.14.3",
     "nanoid": "^4.0.0",
     "nanostores": "^0.6.0",
     "solid-js": "^1.5.4"

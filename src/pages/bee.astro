@@ -1,0 +1,56 @@
+---
+import PageLayout from "~/components/layouts/PageLayout.astro";
+
+import photos from "~/data/photos";
+---
+
+<PageLayout>
+  <style>
+    .photo {
+      transform: translateX(var(--motion-translateX));
+      opacity: 0;
+      --motion-translateX: -24px;
+    }
+  </style>
+
+  <div class="grid grid-cols-3 gap-0.5 md:gap-1 xl:gap-2 p-0.5 md:p-1 xl:p-2">
+    {
+      photos.map((photo) => (
+        <div class="photo relative">
+          <div class="group relative overflow-hidden rounded md:rounded-lg xl:rounded-2xl hover:scale-95 transition-transform duration-500">
+            <img
+              class="w-full h-full aspect-square object-cover group-hover:scale-110 transition-transform duration-300"
+              src={photo.src}
+              alt={photo.id}
+              data-id={photo.id}
+              data-src={photo.src}
+              onclick={`window.handleImageClick(this.getAttribute('data-id'),this.getAttribute('data-src'))`}
+            />
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <script>
+    import { animate, spring, stagger } from "motion";
+    import { selectPhoto } from "~/stores/selected-photo";
+
+    const photos = document.querySelectorAll(".photo");
+    animate(
+      photos,
+      {
+        opacity: 1,
+        x: [-24, 0],
+      },
+      {
+        easing: spring(),
+        delay: stagger(0.1),
+      }
+    );
+
+    window.handleImageClick = function (id: string, src: string) {
+      selectPhoto({ id, src });
+    };
+  </script>
+</PageLayout>

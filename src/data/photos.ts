@@ -7,7 +7,7 @@ type Photo = {
   src: string;
 };
 
-const create15Photos = (): Photo[] => createArray(15, (i) => ({ id: nanoid(), src: `/images/${i}.webp` }));
+const create15Photos = (): Photo[] => createArray(30, (i) => ({ id: nanoid(), src: `/images/${i}.webp` }));
 
 const DUPLICATE = 1;
 

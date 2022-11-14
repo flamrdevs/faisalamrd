@@ -6,9 +6,6 @@ export interface Props {
 const { title = "faisalamrd" } = Astro.props;
 
 import "~/assets/css/index.css";
-
-import ThemeTogglerButton from "~/components/core/ThemeTogglerButton";
-import PhotoModal from "../core/PhotoModal";
 ---
 
 <!DOCTYPE html>
@@ -71,18 +68,8 @@ import PhotoModal from "../core/PhotoModal";
     </style>
   </head>
   <body class="relative">
-    <header class="w-full max-w-screen-xl mx-auto z-0">
-      <div class="flex items-center gap-2 md:gap-3 xl:gap-4 p-2 md:p-3 xl:p-4">
-        <ThemeTogglerButton client:load />
-
-        <h1 class="text-xl md:text-2xl lg:text-3xl font-bold leading-none text-neutral-700 dark:text-neutral-200">faisalamrd</h1>
-      </div>
-    </header>
-
     <main class="w-full max-w-screen-xl mx-auto z-10">
       <slot />
     </main>
-
-    <PhotoModal client:load />
   </body>
 </html>
